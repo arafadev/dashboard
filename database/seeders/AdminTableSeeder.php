@@ -29,8 +29,10 @@ class AdminTableSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
+        $data = [];
+
         for ($i = 0; $i < 9; $i++) {
-            DB::table('admins')->insert([
+            $data[] = [
                 'type' => 'admin',
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
@@ -40,7 +42,9 @@ class AdminTableSeeder extends Seeder
                 'is_notify' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]);
+            ];
         }
+
+        DB::table('admins')->insert($data);
     }
 }
